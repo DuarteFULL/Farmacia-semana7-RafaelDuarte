@@ -28,7 +28,7 @@ public class ProdutoDAO {
 		this.em.remove(produto);
 	}
 	
-	public Produto buscarPorId(Long id) {
+	public Produto buscarPorId(int id) {
 		return em.find(Produto.class, id);
 	}
 	
