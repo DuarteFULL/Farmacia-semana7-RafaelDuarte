@@ -93,10 +93,9 @@ public class Main {
         EntityManager em = JPAUtil.getEntityManager();
 		ProdutoDAO produtos = new ProdutoDAO(em);
 
-        
         List<Produto> todos = produtos.buscarTodos();
-        
-		//todos.forEach(p2 -> System.out.println()));
+     
+		todos.forEach(p2 -> System.out.println(p2.toString()));
 
         System.out.println("Pressione qualquer tecla e de ENTER para voltar ao menu principal");
         teclado.next();

@@ -83,4 +83,12 @@ public class Produto {
 		this.fabricante = fabricante;
 	}
 
+	@Override
+	public String toString() {
+		return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco
+				+ ", create_time=" + create_time + ", fabricante=" + fabricante + "]";
+	}
+
+	
+
 }

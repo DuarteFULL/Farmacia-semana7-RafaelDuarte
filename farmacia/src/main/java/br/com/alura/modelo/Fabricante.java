@@ -29,5 +29,12 @@ public class Fabricante {
 		this.nome = nome;
 	}
 
+	@Override
+	public String toString() {
+		return "[nome=" + nome + "]";
+	}
+
+	
+
 }
 
