@@ -20,7 +20,7 @@ public class Produto {
 	private String nome;
 	private String descricao;
 	private BigDecimal preco;
-    private LocalDate dataCadastro = LocalDate.now();
+    private LocalDate create_time = LocalDate.now();
 	
 	@ManyToOne
 	private Fabricante fabricante;
@@ -68,11 +68,11 @@ public class Produto {
 	}
 
 	public LocalDate getDataCadastro() {
-		return dataCadastro;
+		return create_time;
 	}
 
 	public void setDataCadastro(LocalDate dataCadastro) {
-		this.dataCadastro = dataCadastro;
+		this.create_time = dataCadastro;
 	}
 
 	public Fabricante getFabricante() {

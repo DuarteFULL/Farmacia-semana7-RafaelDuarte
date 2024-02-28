@@ -1,11 +1,17 @@
 package br.com.alura;
 
+import java.math.BigDecimal;
+import java.util.List;
 import java.util.Scanner;
 
-import br.com.alura.modelo.RegraDenegocioException;
+import javax.persistence.EntityManager;
 
-//import br.com.farmacia.modelo.Produto;
-//import br.com.farmacia.service.ProdutoService;
+import br.com.alura.DAO.FabricanteDAO;
+import br.com.alura.DAO.ProdutoDAO;
+import br.com.alura.modelo.Fabricante;
+import br.com.alura.modelo.Produto;
+import br.com.alura.modelo.RegraDenegocioException;
+import br.com.alura.util.JPAUtil;
 
 public class Main {
     //private static ProdutoService service = new ProdutoService();
@@ -19,7 +25,7 @@ public class Main {
             try {
                 switch (opcao) {
                     case 1:
-                        //listarProdutos();
+                        listarProdutos();
                         break;
                     case 2:
                         //cadastrarProduto();
@@ -63,6 +69,39 @@ public class Main {
         return teclado.nextInt();
     }
 
+    
+    public void cadastrarProduto(Fabricante fabricanteNovo, Produto produtoNovo) {
+		Fabricante fabricante = new Fabricante(fabricanteNovo.getNome());
+		Produto produto = new Produto(produtoNovo.getNome(), produtoNovo.getDescricao(), produtoNovo.getPreco(), fabricante);
+		
+		EntityManager em = JPAUtil.getEntityManager();
+		ProdutoDAO produtoDao = new ProdutoDAO(em);
+		FabricanteDAO categoriaDao = new FabricanteDAO(em);
+		
+		em.getTransaction().begin();
+		
+		categoriaDao.cadastrar(fabricante);
+		produtoDao.cadastrar(produto);
+		
+		em.getTransaction().commit();
+		em.close();
+	}
+    
+    private static void listarProdutos() {
+        System.out.println("Produtos cadastrados:");
+
+        EntityManager em = JPAUtil.getEntityManager();
+		ProdutoDAO produtos = new ProdutoDAO(em);
+
+        
+        List<Produto> todos = produtos.buscarTodos();
+        
+		//todos.forEach(p2 -> System.out.println()));
+
+        System.out.println("Pressione qualquer tecla e de ENTER para voltar ao menu principal");
+        teclado.next();
+    }
+    
     // private static void listarProdutos() {
     //     System.out.println("Produtos cadastrados:");
     //     var produtos = service.listarProdutos();
