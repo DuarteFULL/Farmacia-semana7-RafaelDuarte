@@ -11,6 +11,7 @@ import br.com.alura.DAO.ProdutoDAO;
 import br.com.alura.modelo.Fabricante;
 import br.com.alura.modelo.Produto;
 import br.com.alura.modelo.RegraDenegocioException;
+import br.com.alura.service.ProdutoService;
 import br.com.alura.util.JPAUtil;
 
 public class Main {
@@ -28,7 +29,7 @@ public class Main {
                         listarProdutos();
                         break;
                     case 2:
-                        cadastrarProduto();
+                        //cadastrarProduto();
                         break;
                     case 3:
                         //deletarProduto();
@@ -90,12 +91,9 @@ public class Main {
     private static void listarProdutos() {
         System.out.println("Produtos cadastrados:");
 
-        //EntityManager em = JPAUtil.getEntityManager();
-		//ProdutoDAO produtos = new ProdutoDAO(em);
+        ProdutoService pService = new ProdutoService();
 
-        //List<Produto> todos = produtos.buscarTodos();
-     
-		//todos.forEach(p2 -> System.out.println(p2.toString()));
+        pService.listarProdutos();
 
         System.out.println("Pressione qualquer tecla e de ENTER para voltar ao menu principal");
         teclado.next();

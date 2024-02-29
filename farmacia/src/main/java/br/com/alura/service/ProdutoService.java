@@ -10,16 +10,15 @@ import br.com.alura.util.JPAUtil;
 
 public class ProdutoService {
 
-public static void listarProdutos() {
-        System.out.println("Produtos cadastrados:");
+    public void listarProdutos() {
 
         EntityManager em = JPAUtil.getEntityManager();
-		ProdutoDAO produtos = new ProdutoDAO(em);
+        ProdutoDAO produtos = new ProdutoDAO(em);
 
         List<Produto> todos = produtos.buscarTodos();
-     
-		todos.forEach(p2 -> System.out.println(p2.toString()));
-        
+
+        todos.forEach(p2 -> System.out.println(p2.toString()));
+
     }
 
 
