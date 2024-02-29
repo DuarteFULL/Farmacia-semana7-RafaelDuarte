@@ -28,7 +28,7 @@ public class Main {
                         listarProdutos();
                         break;
                     case 2:
-                        //cadastrarProduto();
+                        cadastrarProduto();
                         break;
                     case 3:
                         //deletarProduto();
@@ -70,9 +70,9 @@ public class Main {
     }
 
     
-    public void cadastrarProduto(Fabricante fabricanteNovo, Produto produtoNovo) {
-		Fabricante fabricante = new Fabricante(fabricanteNovo.getNome());
-		Produto produto = new Produto(produtoNovo.getNome(), produtoNovo.getDescricao(), produtoNovo.getPreco(), fabricante);
+    public void cadastrarProduto() {
+		Fabricante fabricante = new Fabricante();
+		Produto produto = new Produto();
 		
 		EntityManager em = JPAUtil.getEntityManager();
 		ProdutoDAO produtoDao = new ProdutoDAO(em);
@@ -90,12 +90,12 @@ public class Main {
     private static void listarProdutos() {
         System.out.println("Produtos cadastrados:");
 
-        EntityManager em = JPAUtil.getEntityManager();
-		ProdutoDAO produtos = new ProdutoDAO(em);
+        //EntityManager em = JPAUtil.getEntityManager();
+		//ProdutoDAO produtos = new ProdutoDAO(em);
 
-        List<Produto> todos = produtos.buscarTodos();
+        //List<Produto> todos = produtos.buscarTodos();
      
-		todos.forEach(p2 -> System.out.println(p2.toString()));
+		//todos.forEach(p2 -> System.out.println(p2.toString()));
 
         System.out.println("Pressione qualquer tecla e de ENTER para voltar ao menu principal");
         teclado.next();
