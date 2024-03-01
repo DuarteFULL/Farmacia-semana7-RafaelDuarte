@@ -79,7 +79,7 @@ public class Main {
         var descricaoDoProduto = teclado.next();
 
         System.out.println("Digite o valor do produto:");
-        var valorDoProduto = teclado.nextBigDecimal();        
+        var valorDoProduto = teclado.nextFloat();        
 
         System.out.println("Digite o fabricante do produto:");
         var fabricanteDoProduto = teclado.next();        
