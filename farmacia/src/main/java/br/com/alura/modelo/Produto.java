@@ -21,6 +21,7 @@ public class Produto {
 	private String descricao;
 	private BigDecimal preco;
     private LocalDate create_time = LocalDate.now();
+	private boolean ativo;
 	
 	@ManyToOne
 	private Fabricante fabricante;

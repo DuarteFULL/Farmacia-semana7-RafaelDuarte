@@ -29,13 +29,13 @@ public class Main {
                         listarProdutos();
                         break;
                     case 2:
-                        //cadastrarProduto();
+                        cadastrarProduto();
                         break;
                     case 3:
-                        //deletarProduto();
+                        deletarProduto();
                         break;
                     case 4:
-                        //consultarProduto();
+                        consultarProduto();
                         break;
                     case 5:
                         //alterarValorProduto();
@@ -71,21 +71,39 @@ public class Main {
     }
 
     
-    public void cadastrarProduto() {
-		Fabricante fabricante = new Fabricante();
-		Produto produto = new Produto();
+    public static void cadastrarProduto() {
+		System.out.println("Digite o nome do produto:");
+        var nomeDoProduto = teclado.next();
+
+        System.out.println("Digite a descrção do produto:");
+        var descricaoDoProduto = teclado.next();
+
+        System.out.println("Digite o valor do produto:");
+        var valorDoProduto = teclado.nextBigDecimal();        
+
+        System.out.println("Digite o fabricante do produto:");
+        var fabricanteDoProduto = teclado.next();        
+        
+        Fabricante fabricante = new Fabricante(fabricanteDoProduto);
+		Produto produto = new Produto(nomeDoProduto, descricaoDoProduto, valorDoProduto, fabricante);
+
+        ProdutoService pService = new ProdutoService();
+        pService.cadastrarProduto(fabricante, produto);
+
+        System.out.println("Pressione qualquer tecla e de ENTER para voltar ao menu principal");
+        teclado.next();
 		
-		EntityManager em = JPAUtil.getEntityManager();
-		ProdutoDAO produtoDao = new ProdutoDAO(em);
-		FabricanteDAO categoriaDao = new FabricanteDAO(em);
+		//EntityManager em = JPAUtil.getEntityManager();
+		//ProdutoDAO produtoDao = new ProdutoDAO(em);
+		//FabricanteDAO categoriaDao = new FabricanteDAO(em);
 		
-		em.getTransaction().begin();
+		//em.getTransaction().begin();
 		
-		categoriaDao.cadastrar(fabricante);
-		produtoDao.cadastrar(produto);
+		//categoriaDao.cadastrar(fabricante);
+		//produtoDao.cadastrar(produto);
 		
-		em.getTransaction().commit();
-		em.close();
+		//em.getTransaction().commit();
+		//em.close();
 	}
     
     private static void listarProdutos() {
@@ -99,57 +117,37 @@ public class Main {
         teclado.next();
     }
     
-    // private static void listarProdutos() {
-    //     System.out.println("Produtos cadastrados:");
-    //     var produtos = service.listarProdutos();
-    //     produtos.stream().forEach(System.out::println);
+    private static void deletarProduto() {
+        System.out.println("Digite o nome do produto:");
+        var nomeDoProduto = teclado.next();
+        ProdutoService pService = new ProdutoService();
 
-    //     System.out.println("Pressione qualquer tecla e de ENTER para voltar ao menu principal");
-    //     teclado.next();
-    // }
+        pService.deletarPorNome(nomeDoProduto);
 
-    // private static void cadastrarProduto() {
-    //     System.out.println("Digite o nome do produto:");
-    //     var nomeDoProduto = teclado.next();
+        System.out.println("\nProduto deletado com sucesso!");
+        System.out.println("Pressione qualquer tecla e de ENTER para voltar ao menu principal");
+        teclado.next();
+    }
 
-    //     System.out.println("Digite o valor do produto:");
-    //     var valorDoProduto = teclado.nextFloat();
+    private static void consultarProduto() {
+        System.out.println("Digite o nome do produto:");
+        var nomeDoProduto = teclado.next();
 
-    //     System.out.println("Digite o fabricante do produto:");
-    //     var fabricanteDoProduto = teclado.next();
-
-    //     service.cadastrar(new Produto(valorDoProduto, nomeDoProduto, fabricanteDoProduto));
-
-    //     System.out.println("Produto Cadastrador com sucesso!");
-    //     System.out.println("Pressione qualquer tecla e de ENTER para voltar ao menu principal");
-    //     teclado.next();
-    // }
-
-    // private static void deletarProduto() {
-    //     System.out.println("Digite o nome do produto:");
-    //     var nomeDoProduto = teclado.next();
-
-    //     service.deletar(nomeDoProduto);
-
-    //     System.out.println("Produto deletado com sucesso!");
-    //     System.out.println("Pressione qualquer tecla e de ENTER para voltar ao menu principal");
-    //     teclado.next();
-    // }
-
-    // private static void consultarProduto() {
-    //     System.out.println("Digite o nome do produto:");
-    //     var nomeDoProduto = teclado.next();
-    //     var produto = service.buscarProdutoPorNome(nomeDoProduto);
-    //     System.out.println(produto.toString());
-
-    //     System.out.println("Pressione qualquer tecla e de ENTER para voltar ao menu principal");
-    //     teclado.next();
-    // }
+        ProdutoService pService = new ProdutoService();
+        pService.buscarProdutoPorNome(nomeDoProduto);
+        //stem.out.println(produto.toString());
+    
+        System.out.println("\nPressione qualquer tecla e de ENTER para voltar ao menu principal");
+        teclado.next();
+    }
 
     // private static void alterarValorProduto() {
     //     System.out.println("Digite o nome do produto:");
     //     var nomeDoProduto = teclado.next();
-    //     var produto = service.buscarProdutoPorNome(nomeDoProduto);
+
+    //     ProdutoService pService = new ProdutoService();
+
+    //     var produto = pService.buscarProdutoPorNome(nomeDoProduto);
     //     System.out.println("Digite o novo valor do produto:");
     //     var valorDoProduto = teclado.nextFloat();
 
