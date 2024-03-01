@@ -20,7 +20,7 @@ public class Produto {
 	private int id;
 	private String nome;
 	private String descricao;
-	private BigDecimal preco;
+	private float preco;
     private LocalDate create_time = LocalDate.now();
 	private boolean ativo;
 	
@@ -30,7 +30,7 @@ public class Produto {
 	public Produto() {
 	}
 	
-	public Produto(String nome, String descricao, BigDecimal preco, Fabricante fabricante) {
+	public Produto(String nome, String descricao, float preco, Fabricante fabricante) {
 		this.nome = nome;
 		this.descricao = descricao;
 		this.preco = preco;
@@ -66,11 +66,11 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public BigDecimal getPreco() {
+	public Float getPreco() {
 		return preco;
 	}
 
-	public void setPreco(BigDecimal preco) {
+	public void setPreco(Float preco) {
 		this.preco = preco;
 	}
 

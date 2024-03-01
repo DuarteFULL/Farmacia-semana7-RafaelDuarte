@@ -38,7 +38,7 @@ public class Main {
                         consultarProduto();
                         break;
                     case 5:
-                        //alterarValorProduto();
+                        alterarValorProduto();
                         break;
                     case 6:
                         //alterarFabricanteProduto();
@@ -92,18 +92,6 @@ public class Main {
 
         System.out.println("Pressione qualquer tecla e de ENTER para voltar ao menu principal");
         teclado.next();
-		
-		//EntityManager em = JPAUtil.getEntityManager();
-		//ProdutoDAO produtoDao = new ProdutoDAO(em);
-		//FabricanteDAO categoriaDao = new FabricanteDAO(em);
-		
-		//em.getTransaction().begin();
-		
-		//categoriaDao.cadastrar(fabricante);
-		//produtoDao.cadastrar(produto);
-		
-		//em.getTransaction().commit();
-		//em.close();
 	}
     
     private static void listarProdutos() {
@@ -139,21 +127,19 @@ public class Main {
         teclado.next();
     }
 
-    // private static void alterarValorProduto() {
-    //     System.out.println("Digite o nome do produto:");
-    //     var nomeDoProduto = teclado.next();
+    private static void alterarValorProduto() {
+        System.out.print("Digite o nome do produto: ");
+        var nomeDoProduto = teclado.next();
+        System.out.print("Digite o novo valor do produto: ");
+        var valorDoProduto = teclado.nextFloat();
 
-    //     ProdutoService pService = new ProdutoService();
+        ProdutoService pService = new ProdutoService();
 
-    //     var produto = pService.buscarProdutoPorNome(nomeDoProduto);
-    //     System.out.println("Digite o novo valor do produto:");
-    //     var valorDoProduto = teclado.nextFloat();
+        pService.alterarValor(nomeDoProduto, valorDoProduto);
 
-    //     service.alterarValorProduto(produto, valorDoProduto);
-
-    //     System.out.println("Pressione qualquer tecla e de ENTER para voltar ao menu principal");
-    //     teclado.next();
-    // }
+        System.out.println("\nPressione qualquer tecla e de ENTER para voltar ao menu principal");
+        teclado.next();
+    }
 
     // private static void alterarFabricanteProduto() {
     //     System.out.println("Digite o nome do produto:");
