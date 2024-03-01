@@ -101,7 +101,54 @@ public class ProdutoService {
         }
     }
 
-    
+    public void alterarFabricante(String pnome, Fabricante pfabricante){
+        EntityManager em = JPAUtil.getEntityManager();
+		ProdutoDAO produtoDAO = new ProdutoDAO(em);
+		
+		List<Produto> listTodos = produtoDAO.buscarPorNome(pnome);
 
+        if(listTodos.size() != 0){
+            FabricanteDAO fabricanteDao = new FabricanteDAO(em);
+		
+		    em.getTransaction().begin();
+		
+		    fabricanteDao.cadastrar(pfabricante);
+
+            listTodos.forEach(p2 -> {
+                p2.setFabricante(pfabricante);
+                produtoDAO.atualizar(p2);
+            });
+
+            em.getTransaction().commit();
+		    em.close();
+            System.out.println("\nFabricante do produto atualizado com sucesso!");
+        } else {
+            System.out.println("Produto com o nome '"+pnome+"' não encontrado, tente novamente.");
+        }
+    }
+
+    public void alterarDescricao(String pnome, String pdescricao){
+        EntityManager em = JPAUtil.getEntityManager();
+		ProdutoDAO produtoDAO = new ProdutoDAO(em);
+		
+		List<Produto> listTodos = produtoDAO.buscarPorNome(pnome);
+
+        if(listTodos.size() != 0){
+            em.getTransaction().begin();
+
+            listTodos.forEach(p2 -> {
+                p2.setDescricao(pdescricao);
+                produtoDAO.atualizar(p2);
+            });
+
+            em.getTransaction().commit();
+		    em.close();
+            System.out.println("\nDescrição do produto atualizado com sucesso!");
+        } else {
+            System.out.println("Produto com o nome '"+pnome+"' não encontrado, tente novamente.");
+        }
+    }
+
+    //FIM DA APLICAÇÂO
 
 }

@@ -22,7 +22,7 @@ public class Main {
 
         var opcao = Menu();
 
-        while (opcao != 7) {
+        while (opcao != 8) {
             try {
                 switch (opcao) {
                     case 1:
@@ -41,7 +41,9 @@ public class Main {
                         alterarValorProduto();
                         break;
                     case 6:
-                        //alterarFabricanteProduto();
+                        alterarFabricanteProduto();
+                    case 7:
+                        alterarDescricaoProduto();
                 }
             } catch (RegraDenegocioException e) {
                 System.out.println("Erro: " +e.getMessage());
@@ -65,7 +67,8 @@ public class Main {
                 4 - Consultar produto
                 5 - Alterar valor do produto
                 6 - Alterar fabricante do produto 
-                7 - Sair
+                7 - Alterar descrição do produto
+                8 - Sair
                 """);
         return teclado.nextInt();
     }
@@ -75,7 +78,7 @@ public class Main {
 		System.out.println("Digite o nome do produto:");
         var nomeDoProduto = teclado.next();
 
-        System.out.println("Digite a descrção do produto:");
+        System.out.println("Digite a descrição do produto:");
         var descricaoDoProduto = teclado.next();
 
         System.out.println("Digite o valor do produto:");
@@ -141,18 +144,34 @@ public class Main {
         teclado.next();
     }
 
-    // private static void alterarFabricanteProduto() {
-    //     System.out.println("Digite o nome do produto:");
-    //     var nomeDoProduto = teclado.next();
-    //     var produto = service.buscarProdutoPorNome(nomeDoProduto);
-    //      System.out.println("Digite o novo fabricante do produto:");
-    //     var fabricanteDoProduto = teclado.next();
+    private static void alterarFabricanteProduto() {
+        System.out.print("Digite o nome do produto: ");
+        var nomeDoProduto = teclado.next();
+        System.out.print("Digite o novo fabricante do produto: ");
+        var fabricanteDoProduto = teclado.next();
 
-    //     service.alterarFabricanteProduto(produto, fabricanteDoProduto);
+        ProdutoService pService = new ProdutoService();
+        Fabricante fabricante = new Fabricante(fabricanteDoProduto);
+        
+        pService.alterarFabricante(nomeDoProduto, fabricante);
 
-    //     System.out.println("Pressione qualquer tecla e de ENTER para voltar ao menu principal");
-    //     teclado.next();
-    // }
+        System.out.println("Pressione qualquer tecla e de ENTER para voltar ao menu principal");
+        teclado.next();
+    }
+
+    private static void alterarDescricaoProduto() {
+        System.out.print("Digite o nome do produto: ");
+        var nomeDoProduto = teclado.next();
+        System.out.print("Digite a nova descrição do produto: ");
+        var descricaoDoProduto = teclado.next();
+
+        ProdutoService pService = new ProdutoService();
+
+        pService.alterarDescricao(nomeDoProduto, descricaoDoProduto);
+
+        System.out.println("\nPressione qualquer tecla e de ENTER para voltar ao menu principal");
+        teclado.next();
+    }
 
     
 }
