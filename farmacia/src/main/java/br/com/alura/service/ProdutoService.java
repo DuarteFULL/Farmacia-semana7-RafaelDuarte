@@ -55,6 +55,10 @@ public class ProdutoService {
 		
 		List<Produto> todos = produtos.buscarPorNome(pnome);
 
+        if(todos != null){
+            System.out.println("Existe alguem para ser deletado e é: "+todos.size());
+        }
+
         todos.forEach(p2 -> produtos.remover(p2));
     }
 
