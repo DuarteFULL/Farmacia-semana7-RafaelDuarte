@@ -30,7 +30,7 @@ public class CadastroDeProduto {
 
 	private static void cadastrarProduto() {
 		Fabricante ems = new Fabricante("EMS");
-		Produto dipirona = new Produto("Dipirona", "Muito legal", new BigDecimal("800"), ems );
+		Produto dipirona = new Produto("Dipirona", "Muito legal", 800, ems );
 		
 		EntityManager em = JPAUtil.getEntityManager();
 		ProdutoDAO produtoDAO = new ProdutoDAO(em);

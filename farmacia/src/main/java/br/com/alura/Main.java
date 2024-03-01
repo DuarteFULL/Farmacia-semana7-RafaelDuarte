@@ -1,21 +1,14 @@
 package br.com.alura;
 
-import java.math.BigDecimal;
-import java.util.List;
 import java.util.Scanner;
 
-import javax.persistence.EntityManager;
-
-import br.com.alura.DAO.FabricanteDAO;
-import br.com.alura.DAO.ProdutoDAO;
 import br.com.alura.modelo.Fabricante;
 import br.com.alura.modelo.Produto;
 import br.com.alura.modelo.RegraDenegocioException;
 import br.com.alura.service.ProdutoService;
-import br.com.alura.util.JPAUtil;
+
 
 public class Main {
-    //private static ProdutoService service = new ProdutoService();
     private static Scanner teclado = new Scanner(System.in);
 
     public static void main(String[] args) {
