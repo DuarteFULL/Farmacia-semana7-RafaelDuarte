@@ -19,7 +19,11 @@ public class ProdutoService {
 
         List<Produto> todos = produtos.buscarTodos();
 
-        todos.forEach(p2 -> System.out.println(p2.toString()));
+        if(todos.size() != 0){
+            todos.forEach(p2 -> System.out.println(p2.toString()));
+        } else {
+            System.out.println("\nNão existe nenhum produto cadastrado.");
+        }
 
     }
 
@@ -43,23 +47,36 @@ public class ProdutoService {
 		EntityManager em = JPAUtil.getEntityManager();
 		ProdutoDAO produtos = new ProdutoDAO(em);
 		
-		List<Produto> todos = produtos.buscarPorNome(pnome);
+		List<Produto> todos = produtos.buscarPorNome(pnome);        
 
-        todos.forEach(p2 -> System.out.println(p2.toString()));
+        if(todos.size() != 0){
+            todos.forEach(p2 -> System.out.println(p2.toString()));
+        } else {
+            System.out.println("\nProduto com o nome '"+pnome+"' não encontrado, tente novamente.");
+        }
     }
 
     public void deletarPorNome(String pnome){
 		
 		EntityManager em = JPAUtil.getEntityManager();
-		ProdutoDAO produtos = new ProdutoDAO(em);
+		ProdutoDAO produtoDAO = new ProdutoDAO(em);
 		
-		List<Produto> todos = produtos.buscarPorNome(pnome);
+		List<Produto> listTodos = produtoDAO.buscarPorNome(pnome);
 
-        if(todos != null){
-            System.out.println("Existe alguem para ser deletado e é: "+todos.size());
+        if(listTodos.size() != 0){
+            System.out.println("Existe alguem para ser deletado e é: "+listTodos.size());
+
+            em.getTransaction().begin();
+
+            listTodos.forEach(p2 -> produtoDAO.remover(p2));
+
+            em.getTransaction().commit();
+		    em.close();
+            System.out.println("\nProduto deletado com sucesso!");
+        } else {
+            System.out.println("Produto com o nome '"+pnome+"' não encontrado, tente novamente.");
         }
-
-        todos.forEach(p2 -> produtos.remover(p2));
+        
     }
 
     

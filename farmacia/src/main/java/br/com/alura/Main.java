@@ -113,29 +113,27 @@ public class Main {
 
         pService.listarProdutos();
 
-        System.out.println("Pressione qualquer tecla e de ENTER para voltar ao menu principal");
+        System.out.println("\nPressione qualquer tecla e de ENTER para voltar ao menu principal");
         teclado.next();
     }
     
     private static void deletarProduto() {
-        System.out.println("Digite o nome do produto:");
+        System.out.print("Digite o nome do produto a ser deletado: ");
         var nomeDoProduto = teclado.next();
         ProdutoService pService = new ProdutoService();
 
         pService.deletarPorNome(nomeDoProduto);
-
-        System.out.println("\nProduto deletado com sucesso!");
-        System.out.println("Pressione qualquer tecla e de ENTER para voltar ao menu principal");
+        
+        System.out.println("\nPressione qualquer tecla e de ENTER para voltar ao menu principal");
         teclado.next();
     }
 
     private static void consultarProduto() {
-        System.out.println("Digite o nome do produto:");
+        System.out.print("Digite o nome do produto para consulta: ");
         var nomeDoProduto = teclado.next();
 
         ProdutoService pService = new ProdutoService();
         pService.buscarProdutoPorNome(nomeDoProduto);
-        //stem.out.println(produto.toString());
     
         System.out.println("\nPressione qualquer tecla e de ENTER para voltar ao menu principal");
         teclado.next();

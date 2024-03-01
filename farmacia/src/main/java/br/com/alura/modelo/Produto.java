@@ -35,6 +35,11 @@ public class Produto {
 		this.descricao = descricao;
 		this.preco = preco;
 		this.fabricante = fabricante;
+		this.ativo = true;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
 	}
 
 	public int getId() {
