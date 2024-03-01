@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ public class Produto {
     private LocalDate create_time = LocalDate.now();
 	private boolean ativo;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Fabricante fabricante;
 	
 	public Produto() {
